@@ -35,6 +35,21 @@ struct Point(i32, i32, i32);
 //     unit-like structs.
 struct AlwaysEqual;
 
+// Ownership of Struct Data
+// In the User struct above, the owned String type rather tham &str string slice type is used
+//     deliberately because we want each instance of the struct to own all of the data and 
+//     for that data to be valid for as long as the entire struct is valid
+// Structs can also store references to data owned by something else-this requires 'lifetimes'
+//     See: Chapter 10 for more information on lifetimes which ensure data referenced by structs
+//     are valid for as long as the struct is alive
+// Trying to store a reference in a struct without specifying lifetimes won't work
+// struct UserNoLifetime {
+//     active: bool,
+//     username: &str,
+//     email: &str,
+//     sign_in_count: u64,
+// }
+
 fn main() {
     // Create an instance of the Struct using {key: value, ...} pairs
     // Specify concrete values for each of the field
@@ -91,6 +106,14 @@ fn main() {
 
     // Unit-Like Structs without any Fields
     let subject = AlwaysEqual;
+
+    // This fails because you can't store a reference in a struct without lifetimes
+    // let user4 = UserNoLifetime {
+    //     email: "someone@example.com",
+    //     username: "someusername123",
+    //     active: true,
+    //     sign_in_count: 1
+    // }
 }
 
 
