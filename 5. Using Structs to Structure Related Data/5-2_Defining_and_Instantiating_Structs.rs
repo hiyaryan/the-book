@@ -42,7 +42,22 @@ fn main() {
 
     // Ensure that the entire instance of the struct is mutable if an attribute is to be updated.
     // A single value cannot only be marked as mutable, the entire struct must be.
-    user2.email = String::from("anotheremail@example.com")
+    user2.email = String::from("anotheremail@example.com");
+
+    // Creating Instances from Other Instances with Struct Update Syntax
+    // Create a new instance of a struct including most of the values from another instance.
+    let user3 = User {
+        active: user2.active,
+        username:user2.username,
+        email: String::from("another@example.com"),
+        sign_in_count: user2.sign_in_count,
+    };
+
+    // Do the same thing above with Struct Update Syntax
+    let user3 = User {
+        email: String::from("another@example.com"),
+        ..user1
+    };
 }
 
 
@@ -68,6 +83,3 @@ fn build_user_shorthand(email: String, username: String) -> User {
         sign_in_count: 1,
     }
 }
-
-
-// Creating Instances from Other Instances with Struct Update Syntax
