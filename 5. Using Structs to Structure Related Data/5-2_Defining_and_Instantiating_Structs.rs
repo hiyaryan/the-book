@@ -26,7 +26,14 @@ struct User {
 struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
 
-// 
+// Unit-Like Structs Without Any Fields
+// Structs without any field behave similarly to (), the unit type mentioned in "The Tuple Type"
+// Useful for implementing a trait on some type without data to store.
+// Later the behavior can be implemented-e.g. having an instance that is always equal (AlwaysEqual) 
+//     to any other type.
+// See: Chapter 10 for more information on how to define traits and implement them on any type including
+//     unit-like structs.
+struct AlwaysEqual;
 
 fn main() {
     // Create an instance of the Struct using {key: value, ...} pairs
