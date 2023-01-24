@@ -18,6 +18,15 @@ struct User {
     sign_in_count: u64,
 }
 
+// Using Tuple Structs without Named fields to Create Different Types
+// Tuple structs: structs that look like tuples
+// Fields don't have names so the struct name provides all of the information
+// Useful for giving a whole tuple a name and make the tuple a different type from other tuples
+//     and when naming each field would be verbose and redundant
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+// 
 
 fn main() {
     // Create an instance of the Struct using {key: value, ...} pairs
@@ -61,6 +70,20 @@ fn main() {
         email: user2.email,
         ..user1
     };
+
+
+    // See: Using Tuple Structs without Named Fields to Create Different Types
+    // The following lines are considered to be different types because they are instances of different
+    // structs.  
+    // Each defined struct is its own type even if the fields in the struct are the same types.
+    // Recall: With tuples, you can destructure them into individual pieces and a '.' can bew used
+    // followed by the index to access an individual value.
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+
+
+    // Unit-Like Structs without any Fields
+    let subject = AlwaysEqual;
 }
 
 
