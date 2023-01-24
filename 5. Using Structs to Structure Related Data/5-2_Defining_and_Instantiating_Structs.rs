@@ -54,8 +54,11 @@ fn main() {
     };
 
     // Do the same thing above with Struct Update Syntax
+    // README: recall that data transfers ownership. All other user2 attributes have been given to user3 in the
+    //     previous assignment. Only user2.email is still owned by user2. user3 then had to take ownership
+    //     of whatever is owned by user1 minus whatever it took from user2, so user1 now only owns an email.
     let user3 = User {
-        email: String::from("another@example.com"),
+        email: user2.email,
         ..user1
     };
 }
