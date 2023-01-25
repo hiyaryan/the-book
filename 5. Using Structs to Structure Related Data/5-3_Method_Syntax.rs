@@ -4,6 +4,13 @@
 //    object-ch 17) and that their first parameter is always `self` representing the instance of the struct the method is 
 //    being called on.
 
+// Summary
+// Structs are used to create custom types. 
+// They keep associated pieces of data connected to each other and name each piece making code clear.
+// In `impl` blocks, 
+//     functions can be defined that are associated with the struct type (constructors) and
+//     methods can be defined that associate specified behavior that instances of the struct have.
+
 // Defining methods
 #[derive(Debug)]
 struct Rectangle {
@@ -54,6 +61,15 @@ impl Rectangle {
             height: size,
         }
     }
+}
+
+// Multiple impl Blocks
+// structs can have multiple impl blocks
+impl Rectangle {
+    // No point having this fucntion here but for the sake of showing an example, this is valid.
+    // fn can_hold(&self, other: &Rectangle) -> bool {
+    //     self.width > other.width && self.height > other.height
+    // }
 }
 
 // Automatic Referencing and Dereferencing
