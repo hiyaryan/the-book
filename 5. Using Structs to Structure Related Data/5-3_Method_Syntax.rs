@@ -30,12 +30,56 @@ impl Rectangle {
     fn width(&self) -> bool {
         self.width > 0
     }
+
+    // This function checks if a smaller rectangle can be held inside this retangle.
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    // Associated Functions
+    // All functions defined within an impl block are called associated functions because they are associated with
+    // with the type named after impl.
+    // Associated functions can be defined without `self` as the first parameter (these are not methods), because they
+    // don't need an instance of the type to work with.
+    // Associated functions that aren't methods are used for constructors (returns a new instance of the struct) these are
+    // equivalent to using the keyword `new` in other languages.
+
+    // The following function returns a rectangle with equal width and height.
+    // Self keyword in the return type and in the body of the function are aliases for the type that appears after the impl
+    // keyword (in this case that is the Rectangle type).
+    // Call this associated function using the `::` syntax.
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
 }
+
+// Automatic Referencing and Dereferencing
+// Unlike C/C++, Rust doesn't have an equivalent `->` operator. Methods are one of the few places in Rust
+// that have this behavior.
+// How it works
+// When a method is called with `object.something()`, `&`, `&mut`, or `*`, are automatically added so that
+// object automatically matches the signature method.
+//     E.g. The following are the same:
+//          p1.distance(&p2);
+//          (&p1).distance(&p2);
 
 fn main() {
     let rect1 = Rectangle {
         width: 30,
         height: 50,
+    };
+
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
     };
 
     println!("The area of the rectangle is {} square pixels.", rect1.area());
@@ -44,7 +88,15 @@ fn main() {
     // Generally, methods with the same name as a field in a struct only return the value, these are called getters.
     //     This allows the field to be made private, and read-only, through the getter method, as part of the
     //     type's public API. (See Chapter 7 for more info on private and public methods)
-    if rect1.width() {.
+    if rect1.width() {
         println!("The rectangle has a nonzero width; it is {}", rect1.width);
     }
+
+    // By using `&`, `main` retains ownership of the objects, effectively making it read-only.
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    // Calling the constructor in Rectangle that constructs a square
+    let sq = Rectangle::square(3);
+    println!("A retangle with width {} and height {} is called a square.", sq.width, sq.height);
 }
