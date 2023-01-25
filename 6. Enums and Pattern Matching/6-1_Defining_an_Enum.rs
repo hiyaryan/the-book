@@ -94,6 +94,24 @@ impl Message {
     }
 }
 
+// The Option Enum and Its Advantage Over Null Values
+// The `Option` enum type encodes in it the scenario of a value being something or nothing. 
+// Scenario 1: Request of a list containing items returns something
+// Scenario 2: Request of a list containing nothing returns nothing-this is a common bug in other languages
+// Rust excludes the null value in place of the Option enum which is defined by the standard library as follows
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+// The Option type is included in the prelude (it does not need to be brought into scope explicitly)
+// It's variants: Some and None, are also in the prelude, so they can be used without the `Option::` prefix.
+// Option<T> is still a regular enum, with Some(T) and None as its variants.
+// The <T> syntax represents a generic type (see chapter 10 for more info on generic types)
+//     Generic types can hold one piece of data of any type.
+
+// In order to use an Option<T> value, you want code that will handle each variant Some and None.
+// The `match` expression can be used to handle variants in enums.
 
 fn main() {
     // Enum Values
@@ -111,7 +129,24 @@ fn main() {
 
     // Using a method defined in an enum.
     let m = Message::Write(String::from("hello"));
-    m.call()
+    m.call();
+
+    // Examples using the Option type-the data types are inferred.
+    // The option variant, Some or None, must be explicitly annotated. 
+    let some_number = Some(5); // Option<i32>
+    let some_char = Some('e'); // Option<char>
+    let absent_number: Option<i32> = None; // This is the same thing as null kind of..
+
+    // ..None is better than null because Option<T> and T are different types. The compiler won't let
+    // Option<T> be used as if it were an actual valid value.
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
+    let sum = x + y; // This won't compile because it's trying to add two different types.
+    // Option<T> must be converted to T before opertations can be performed.
+    // Using the Option<T> enum requires you to explicitly handle the case when the value is null.
+    // Everywhere where Option<T> is not a value can be safely assumed that the value is not null.
+
+    // To get T out of Option<T> checkout the wide number of methods in its documentation that can.
 }
 
 // Define a function that takes any IpAddrKind
