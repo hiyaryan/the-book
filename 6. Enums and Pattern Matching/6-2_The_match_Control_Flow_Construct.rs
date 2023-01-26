@@ -38,9 +38,27 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 
+// Matching with Option<T>
+// How to get the T out of Option<t>.. use `match`
+// This function takes an Option<i32> and if there's a value inside, adds 1 to that value, otherwise, return None.
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
 
 fn main() {
     // Example using a matching a coin to Quarter with an Alaska design.
     let quarter = value_in_cents(Coin::Quarter(UsState::Alaska));
     println!("The coin has a value of {}.", quarter);
+
+    // Matching with Option<T>
+    let five = Some(5); // Some(5) is a variant of Option<i32>
+    let six = plus_one(five); // Match it against Some(i)
+    let none = plus_one(None); // Match it against None
+
+    println!("The value of Option<5> is {:?}", five);
+    println!("The value of Option<5 + 1> is {:?}", six);
+    println!("The value of Option<None> is {:?}", none);
 }
