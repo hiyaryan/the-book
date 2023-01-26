@@ -58,6 +58,13 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 //     }
 // }
 
+// Catch-all Patterns
+// Functions used in example:
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player(num_spaces: u8) {}
+fn reroll() {}
+
 fn main() {
     // Example using a matching a coin to Quarter with an Alaska design.
     let quarter = value_in_cents(Coin::Quarter(UsState::Alaska));
@@ -71,4 +78,31 @@ fn main() {
     println!("The value of Option<5> is {:?}", five);
     println!("The value of Option<5 + 1> is {:?}", six);
     println!("The value of Option<None> is {:?}", none);
+
+    // Catch-all Patterns and the _ Placeholder
+    // Special actions can be taken for some variants of an enum, for all other variants take a default actions.
+    let dice_roll = 9; // dice landed on 9
+    match dice_roll {
+        3 => add_fancy_hat(), // covers values for 3
+        7 => remove_fancy_hat(), // covers values for 7
+        other => move_player(other), // covers all 'other' values
+    }
+
+    // To use a catch-all but not use the value in the catch-all pattern the `_` symbol can be used in place of `other`.
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reroll(),
+    }
+    // Above meets the exhaustive requirements because all other values are explicitly being ignored. Any other value
+    // not a 3 or 7 has been addressed, it should be ignored.
+
+    // Use the unit value (empty tuple, see ch 3.2) to make nothing happen for rolls other than 3 or 7.
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => (), // empty tuple expresses that nothing should happen for any value not a 3 or 7.
+    }
+
+    // For more on patterns and matching, see ch 18.
 }
