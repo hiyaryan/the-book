@@ -48,6 +48,16 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 
+// Matches Are Exhaustive
+// All variants of an enum must be covered in the match expression. This prevents the mistake of using a null value in an operation.
+// The following function does not work because None is not covered.
+// fn plus_one(x: Option<i32>) -> Option<i32> {
+//     match x {
+//         Some(i) => Some(i + 1),
+//         // None is not handled here so it will result in an error[E0004]: non-exhaustive patterns
+//     }
+// }
+
 fn main() {
     // Example using a matching a coin to Quarter with an Alaska design.
     let quarter = value_in_cents(Coin::Quarter(UsState::Alaska));
