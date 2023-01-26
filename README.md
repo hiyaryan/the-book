@@ -1,2 +1,2 @@
 # the-book
-Learning Rust with the book.
+Learning Rust by the book.
