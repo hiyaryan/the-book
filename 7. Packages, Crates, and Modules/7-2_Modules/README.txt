@@ -32,3 +32,17 @@ fn main(){
     println!("I'm growing {:?}!", plant);
 }
 ```
+
+Grouping Related Code in Modules (ref. src/lib.rs)
+
+e.g. Module tree and its crate roots
+
+crate
+    front_of_house
+        hosting
+            add_to_waitlist
+            seat_at_table
+        serving
+            take_order
+            serve_order
+            take_payment
