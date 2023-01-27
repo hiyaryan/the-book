@@ -47,3 +47,16 @@ With `pub`,
 `pub use` provides a means to structure code internally one way, and expose it a different way (convenient public API).
 (see ch 14 for more information).
 
+
+Using External Packages
+List any external library to be used in the `Cargo.toml` file.
+
+The `std` library is a crate that is shipped with rust so it does not have to be included in `Cargo.toml` as it is already
+downloaded. Find crates at [url]:crates.io to add to the `Cargo.toml` file dependencies to tell Cargo to download them.
+
+Filename: Cargo.toml
+rand = "0.8.5"
+
+Filename: main.rs
+use rand::Rng; // imported
+use std::collections::HashMap // absolute path 
