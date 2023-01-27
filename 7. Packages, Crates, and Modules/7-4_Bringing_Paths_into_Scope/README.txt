@@ -84,3 +84,9 @@ use std::io::Write;
 use std::io::{self, Write};
 
 
+The Glob Operator
+Bring all public items into scope using the glob operator `*`
+    `use std::collections::*`
+
+Caution. Glob can make it hard to tell what names are in scope and where a name was defined.
+Glob is used primarily when writing tests and part of a prelude pattern.
