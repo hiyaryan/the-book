@@ -5,10 +5,11 @@ mod front_of_house {
 }
 
 // Best practice: idomatic way to open a module's functions.
-use crate::front_of_house::hosting;
+// Adding `pub` makes it so it is callable by other parts of the code outside the scope.
+pub use crate::front_of_house::hosting;
 
 // Not a good idea to follow the path all the way to a specific declaration within a module
-use crate::front_of_house::hosting::add_to_waitlist;
+// use crate::front_of_house::hosting::add_to_waitlist;
 
 // Use makes it so that a modules functions can be used in other parts of the code.
 pub fn eat_at_restaurant() {
@@ -22,9 +23,9 @@ mod customer {
         super::hosting::add_to_waitlist();
     }
 
-    pub fn eat_at_restaurant_2() {
+    // pub fn eat_at_restaurant_2() {
         // It's unclear where this function is coming from?
-        super::add_to_waitlist();
-    }
+        // super::add_to_waitlist();
+    // }
 }
 

@@ -35,3 +35,15 @@ Also considered an idiomatic approach, use `as` to give an alias to two types of
     `use std::io::Result as IoResult` // It's clear this result is from the io module
 
 
+Re-exporting Names with `pub use`
+`use` brings items into private scope.
+`pub use` brings items into public scope that enables other code to call it
+
+Before `pub`, to call the code, the path was,
+    `restaurant::front_of_house::hosting::add_to_waitlist()`
+With `pub`,
+    `restaurant::hosting::add_to_waitlist()`
+
+`pub use` provides a means to structure code internally one way, and expose it a different way (convenient public API).
+(see ch 14 for more information).
+

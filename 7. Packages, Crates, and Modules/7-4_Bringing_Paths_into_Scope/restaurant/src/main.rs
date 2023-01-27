@@ -15,10 +15,10 @@ fn main() {
 }
 
 // Only way to rell which Result belongs to which module is to specify the parent module explicilty.
-fn func1() -> fmt::Result {
-    // --snip--
-}
+// fn func1() -> fmt::Result {
+//     // --snip--
+// }
 
-fn func2() -> io::Result {
-    // --snip
-}
+// fn func2() -> io::Result {
+//     // --snip
+// }
