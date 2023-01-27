@@ -27,3 +27,11 @@ Should be
     `use std::fmt`
     `use std::io`
 Now it's clear which, `fmt::Result`, `io::Result`, Result is being used.
+
+
+Providing New Names with the `as` Keyword
+Also considered an idiomatic approach, use `as` to give an alias to two types of the same name into scope using `use`.
+    `use std::fmt::Result`
+    `use std::io::Result as IoResult` // It's clear this result is from the io module
+
+

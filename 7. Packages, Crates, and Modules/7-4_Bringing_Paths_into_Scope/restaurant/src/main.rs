@@ -3,7 +3,11 @@ use std::collections::HashMap;
 
 // Exception to this rule is if the two items imported have the same name.
 use std::fmt;
-use std::io
+use std::io;
+
+// Using `as` to distinguish between imports of the same name.
+use std::fmt::Result;
+use std::io::Result as IoResult;
 
 fn main() {
     let mut map = HashMap::new();
