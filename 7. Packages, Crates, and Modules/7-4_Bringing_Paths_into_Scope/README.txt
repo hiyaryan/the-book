@@ -60,3 +60,27 @@ rand = "0.8.5"
 Filename: main.rs
 use rand::Rng; // imported
 use std::collections::HashMap // absolute path 
+
+
+Using Nested Paths to Clean Up Large use List
+To save vertical space in code nest paths in a single list
+
+Filename: src/main.rs
+// This is better
+use std::{cmp::Ordering, io};
+
+// Than this
+use std::cmp::Ordering;
+use std::cmp::io;
+
+
+Nested paths can be used at any level in a path
+
+Filename: src/lib.rs
+use std::io;
+use std::io::Write;
+
+// Write above on a single line
+use std::io::{self, Write};
+
+
