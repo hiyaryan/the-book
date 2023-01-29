@@ -20,3 +20,8 @@ Add inner match expressions in the error variant block of a outer match block to
 
 Alternatives to Using `match` with Result<T, E>
 Result<T, E> contains closures used to catch errors (see ch 13 for more on closures). These closures wrap error catching neatly without the necessity to nest match cases.
+
+Shortcut for Panic on Error: unwrap and expect
+Result<T, E> contains helper methods `unwrap` and `expect` that unwraps return value inside `Ok`. If the result is `Err`, unwrap will call the default `panic!` macro message, and except will allow a custom message.
+
+Note that `except` is the choice for error catching in production. 

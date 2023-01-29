@@ -26,13 +26,20 @@ fn main() {
     //};
 
     // Catch different kinds of failures with Result<T, E>
-    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
-        if error.kind() == ErrorKind::NotFound {
-            File::create("hello.txt").unwrap_or_else(|error| {
-                panic!("Problem creating the file: {:?}", error);
-            })
-        } else {
-            panic!("Problem opening the file {:?}", error);
-        }
-    });
+    //let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+    //    if error.kind() == ErrorKind::NotFound {
+    //        File::create("hello.txt").unwrap_or_else(|error| {
+    //           panic!("Problem creating the file: {:?}", error);
+    //        })
+    //    } else {
+    //        panic!("Problem opening the file {:?}", error);
+    //    }
+    //});
+
+    // Catch error using using the `unwrap` method from Result<T, E>
+    // let unwrap_greeting_file = File::open("hello.txt").unwrap();
+
+    // Catch error using using the `expect` method from Result<T, E>
+    let expect_greeting_file =
+        File::open("hello.txt").expect("hello.txt should be included in this project");
 }
