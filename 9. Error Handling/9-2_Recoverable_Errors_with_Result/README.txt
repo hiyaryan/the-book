@@ -29,4 +29,13 @@ Note that `except` is the choice for error catching in production.
 
 Propagating Errors
 Propagating the error: Instead of calling the handling error within a function itself, return the error to the calling code so that it can decide what to do.
- 
+
+
+A Shortcut for Propagating Errors: the `?` Operator
+`?` operator provides a shortcut for the very common pattern of handling errors through propagation.
+
+`?` placed after a `Result` value will propagate the Err back to the calling function if caught, otherwise the expression will return Ok.
+
+`?` goes through the `from` function defined in the `From` trait in the standard library which converts one type to another. The error type received is converted to the type of the current function. 
+
+Chain `?` operators together to make error propagation even more concise.

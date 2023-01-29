@@ -2,6 +2,9 @@ use std::fs::File; // Return type of File::open is a Result<T, E>
 use std::io::ErrorKind;
 use std::io::{self, Read};
 
+use std::fs;
+// use std::io;
+
 fn main() {
     // let greeting_file_result = File::open("hello.txt");
 
@@ -46,9 +49,15 @@ fn main() {
 
     // Propogating Errors
     let username = read_username_from_file();
+
+    // Propagating Errors more concisely
+    let username = read_username_from_file_concisely();
+
+    // Propagating Errors from reading a file in practice
+    let username = read_username_from_file_standardly();
 }
 
-// Handles the error
+// Propagate error back to caller
 fn read_username_from_file() -> Result<String, io::Error> {
     let username_file_result = File::open("hello.txt");
 
@@ -63,4 +72,20 @@ fn read_username_from_file() -> Result<String, io::Error> {
         Ok(_) => Ok(username),
         Err(e) => Err(e),
     }
+}
+
+// Propagate error back to caller concisely
+fn read_username_from_file_concisely() -> Result<String, io::Error> {
+    //let mut username_file = File::open("hello.txt")?; // return error of type Result<String,
+    // io::Error>
+    let mut username = String::new();
+    // username_file.read_to_string(&mut username)?;
+
+    // Shorten the error propagation even more by chaining `?` operators.
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+    Ok(username)
+}
+
+fn read_username_from_file_standardly() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
 }
