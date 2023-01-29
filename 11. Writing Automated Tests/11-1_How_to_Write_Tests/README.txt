@@ -50,3 +50,10 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 
 error: test failed, to rerun pass `--lib`
 ```
+
+
+Checking Results with the `assert!` Macro
+`assert!` macro is provided by the standard library and it used to ensure that a condition in a test evaluates to true.
+	- If the value is true: nothing happens, test passes.
+	- If the value is false: assert! macro calls panic! causing the test to fail
+ 
