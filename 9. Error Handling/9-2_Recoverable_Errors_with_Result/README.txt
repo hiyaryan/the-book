@@ -25,3 +25,8 @@ Shortcut for Panic on Error: unwrap and expect
 Result<T, E> contains helper methods `unwrap` and `expect` that unwraps return value inside `Ok`. If the result is `Err`, unwrap will call the default `panic!` macro message, and except will allow a custom message.
 
 Note that `except` is the choice for error catching in production. 
+
+
+Propagating Errors
+Propagating the error: Instead of calling the handling error within a function itself, return the error to the calling code so that it can decide what to do.
+ 
