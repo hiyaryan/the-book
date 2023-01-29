@@ -12,3 +12,11 @@ enum Result<T, E> {
     Ok(T),
     Err(E),
 }
+
+
+Matching on Different Erros
+Add inner match expressions in the error variant block of a outer match block to catch different kinds of failures.
+
+
+Alternatives to Using `match` with Result<T, E>
+Result<T, E> contains closures used to catch errors (see ch 13 for more on closures). These closures wrap error catching neatly without the necessity to nest match cases.
