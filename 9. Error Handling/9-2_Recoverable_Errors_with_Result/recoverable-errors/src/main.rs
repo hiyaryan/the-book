@@ -1,11 +1,18 @@
 use std::fs::File; // Return type of File::open is a Result<T, E>
-use std::io::ErrorKind;
+                   // use std::io::ErrorKind;
 use std::io::{self, Read};
 
 use std::fs;
 // use std::io;
+use std::error::Error;
 
-fn main() {
+// Box<dyn Error> is a trait object (see ch 17 for more information)
+// It can be read as meaning "any kind of error".
+// Using it makes it so that any new code added using ? to the main function will still
+// be valid as a catch all.
+// If main returns a Result, it will exit with a value of 0 if main returns Ok(()) or it will exit
+// with a nonzero value if it returns an Err value.
+fn main() -> Result<(), Box<dyn Error>> {
     // let greeting_file_result = File::open("hello.txt");
 
     // If the result is Ok, the code will return the inner file value out of the Ok variant
@@ -55,6 +62,26 @@ fn main() {
 
     // Propagating Errors from reading a file in practice
     let username = read_username_from_file_standardly();
+
+    // The following line results in a compilation error because the return Err type of
+    // Result does not match the return main. `?` must be used in a function whose return type
+    // matches the type `?` is used on.
+    // Adding a return type on main allows the following to compile.
+    let greeting_file = File::open("hello.txt")?;
+
+    // Solutions to allow `?` to be used here
+    // Change the return type of the function or use a match or one of the Result<T, E> methods to
+    // handle the Result<T, E>
+
+    // Using `?` on Option
+    let mut last_char = last_char_of_first_line("");
+    println!("Last char in string: {:?}", last_char);
+
+    last_char = last_char_of_first_line("hello");
+    println!("Last char in string: {:?}", last_char);
+
+    // Included here as a return value associated with mains return type.
+    Ok(())
 }
 
 // Propagate error back to caller
@@ -88,4 +115,10 @@ fn read_username_from_file_concisely() -> Result<String, io::Error> {
 
 fn read_username_from_file_standardly() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
+}
+
+// Using the `?` on an Option type that checks if the str is empty. The empty string will return
+// None at the first instance of next marked with `?` otherwise it will return the last char.
+fn last_char_of_first_line(text: &str) -> Option<char> {
+    text.lines().next()?.chars().last()
 }
