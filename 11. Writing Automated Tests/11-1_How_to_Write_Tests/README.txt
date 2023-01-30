@@ -80,3 +80,7 @@ Checking for Panics with `should_panic`
 `should_panic` helps ensure that code handles error conditions as expected.
 
 
+Using Result<T, E> in Tests
+This enables the use of the `?` operator in the body of tests which allows tests to be written that should fail if any operation within them returns an Err variant.
+
+#[should_panic] cannot be used on tests with Result<T, E>. To assert an Err variant is returned, `?` should not be used, instead use `assert!(value.is_err()).`

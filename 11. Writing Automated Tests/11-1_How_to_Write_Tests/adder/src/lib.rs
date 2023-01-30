@@ -51,6 +51,16 @@ mod tests {
     // `*` glob is used so anything in the outer module is available to this tests module.
     use super::*;
 
+    // Writing tests that return a Result instead of panic.
+    #[test]
+    fn it_works() -> Result<(), String> {
+        if 2 + 2 == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plus two does not equal four"))
+        }
+    }
+
     #[test]
     fn exploration() {
         let result = add(2, 2);
