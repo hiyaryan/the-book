@@ -56,4 +56,22 @@ Checking Results with the `assert!` Macro
 `assert!` macro is provided by the standard library and it used to ensure that a condition in a test evaluates to true.
 	- If the value is true: nothing happens, test passes.
 	- If the value is false: assert! macro calls panic! causing the test to fail
- 
+
+
+Testing Equality with the assert_eq! and assert_ne! Macros
+Instead of using assert! to test equality with `==`, assert_eq! and assert_ne! macros from the stadard library can test it more conveniently.
+
+`assert_eq!` tests for equality
+`assert_ne!` tests for inequality
+
+If the assertion fails two values are printed making it easier to see why the test failed.
+`assert!` only indicates that it got a false value for the `==` expression without printing the value that led to the false value.
+
+`assert_ne!` macro is useful for cases when it is not certain what the value should be but it is certain what is should not be.
+
+These macros print there arguments using the debug formatting and must implement the `PartialEq` and `Debug` traits. For structs and enums, `PartialEq` trait must be included to assert equality. Since these traits are derivable, they can be added to the top of each code snippt simply with `#[derive(PartialEq, Debug)]`.
+
+
+Adding Custom Failure Messages
+Custom messages can be added as an optional argument to any of the `assert` macros. Any arguments specified after the required arguments are passed along to the `format!` macro. So a format string in `{}` can be passed to the macro.
+
