@@ -75,3 +75,8 @@ These macros print there arguments using the debug formatting and must implement
 Adding Custom Failure Messages
 Custom messages can be added as an optional argument to any of the `assert` macros. Any arguments specified after the required arguments are passed along to the `format!` macro. So a format string in `{}` can be passed to the macro.
 
+
+Checking for Panics with `should_panic`
+`should_panic` helps ensure that code handles error conditions as expected.
+
+
